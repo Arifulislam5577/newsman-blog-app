@@ -58,7 +58,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
 
-    category: ["Internet", "Computer", "Tips"],
+    category: "Internet",
   },
   {
     title: "MANRS in 2021: A Year of Growth and Change",
@@ -104,7 +104,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Internet", "Computer", "Tips"],
+    category: "Internet",
   },
   {
     title:
@@ -151,7 +151,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Internet", "Computer", "Tips"],
+    category: "Internet",
   },
   {
     title: "10 JavaScript One-Liner Gems",
@@ -197,7 +197,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "Computer", "Tips", "React Js"],
+    category: "JavaScript",
   },
   {
     title: "The Modern JavaScript Tutorial",
@@ -243,7 +243,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "Computer", "Tips", "React Js"],
+    category: "JavaScript",
   },
   {
     title: "The Complete JavaScript Course 2022: From Zero to Expert!",
@@ -289,7 +289,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "Computer", "Tips", "React Js"],
+    category: "JavaScript",
   },
   {
     title: "Internationalization vs Localization: What’s the Difference?",
@@ -335,7 +335,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "React Js"],
+    category: "React Js",
   },
   {
     title: "10 Common Mistakes in Software Localization and How to Avoid Them",
@@ -381,7 +381,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "React Js"],
+    category: "React Js",
   },
   {
     title:
@@ -428,7 +428,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "React Js"],
+    category: "React Js",
   },
   {
     title: "Is Oatmeal A Good Moisturizer? Benefits + Organic Face Mask Recipe",
@@ -474,7 +474,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["JavaScript", "React Js"],
+    category: "React Js",
   },
   {
     title:
@@ -521,7 +521,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Lifestyle", "Tips"],
+    category: "Lifestyle",
   },
   {
     title:
@@ -568,7 +568,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Lifestyle"],
+    category: "Lifestyle",
   },
   {
     title: "Ten Beautiful Reasons We Can't Help But Fall In Love With Minimal.",
@@ -614,7 +614,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Lifestyle"],
+    category: "Lifestyle",
   },
   {
     title:
@@ -661,7 +661,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["News"],
+    category: "News",
   },
   {
     title: "Shitty Things News Have Done In 2015.",
@@ -707,7 +707,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["News"],
+    category: "News",
   },
   {
     title: "The Reasons Why We Love News.",
@@ -753,7 +753,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["News"],
+    category: "News",
   },
 
   {
@@ -801,7 +801,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["website", "Tech"],
+    category: "website",
   },
   {
     title: "Become a Better Pinterest Marketer with These Templates",
@@ -847,7 +847,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["website", "Tech"],
+    category: "Tech",
   },
   {
     title: "What is a Funnel Chart and How to Create One",
@@ -893,7 +893,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["website", "Tech"],
+    category: "Tech",
   },
   {
     title: "What Is Brand Identity and How Do You Develop One?",
@@ -939,7 +939,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Telephone", "Tech"],
+    category: "Telephone",
   },
   {
     title: "How to Make a Gantt Chart in Excel? (Ultimate Guide)",
@@ -985,7 +985,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Telephone", "Tech"],
+    category: "Telephone",
   },
   {
     title: "Netflix Culture: How the Brand Redefined Employee Success",
@@ -1031,7 +1031,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Telephone", "Tech"],
+    category: "Telephone",
   },
   {
     title: "The Keys to an Excellent HR Training and Development Program",
@@ -1077,7 +1077,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Travel", "Tour"],
+    category: "Travel",
   },
   {
     title: "Navigate Crisis Management Using Crisis Communication Plans",
@@ -1123,7 +1123,7 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Travel", "Tour"],
+    category: "Travel",
   },
   {
     title: "How to Make a Decision Tree in Excel",
@@ -1169,6 +1169,6 @@ export const blogs = [
 
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
-    category: ["Travel", "Tour"],
+    category: "Travel",
   },
 ];

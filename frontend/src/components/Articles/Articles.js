@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import dateFormat from "dateformat";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { BsArrowRight } from "react-icons/bs";
-import { blogs } from "../../blogs";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBlogs } from "../../redux/action/blogsActions";
+import Loader from "../Loader/Loader";
+
 const Articles = () => {
-  let article1, restArticle;
-  [article1, ...restArticle] = blogs.slice(18, 25);
+  let artOne, restArt;
+  const dispatch = useDispatch();
+  const blogsDetails = useSelector((state) => state.blogsDetails);
+
+  const { loading, blogs, result, resultPerPage, totalBlogs } = blogsDetails;
+
+  [artOne, ...restArt] = blogs;
+
+  useEffect(() => {
+    dispatch(fetchBlogs());
+  }, [dispatch]);
 
   return (
     <section>
@@ -13,14 +28,18 @@ const Articles = () => {
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10">
               <article className="lg:col-span-2 xl:col-span-2 shadow-md p-6 ">
                 <div className="articles-img relative">
-                  <img
-                    src={article1.url}
-                    alt={article1.title}
-                    className="w-full"
-                  />
+                  {loading ? (
+                    <Skeleton height={200} />
+                  ) : (
+                    <img
+                      src={artOne?.url}
+                      alt={artOne?.title}
+                      className="w-full"
+                    />
+                  )}
                   <div className="absolute right-4 top-2">
                     <button className="p-1 px-5 mr-3 bg-slate-600 text-gray-100 text-xs">
-                      04 JUN 2022
+                      {dateFormat(artOne?.createdAt, "dd  mmm yyyy")}
                     </button>
                     <button className="p-1 px-5 bg-slate-600 text-gray-100 text-xs">
                       3 MINUTES READ
@@ -28,38 +47,57 @@ const Articles = () => {
                   </div>
                 </div>
                 <div className="articles-content">
-                  <div className="content-tag my-5">
-                    <button className="p-1 px-3 mr-3 bg-gray-100  transition hover:bg-blue-100">
-                      Travel
-                    </button>
-                    <button className="p-1 px-3 mr-3 bg-gray-100  transition hover:bg-blue-100">
-                      News
+                  <div className={`content-tag ${loading ? "my-2" : "my-5"}`}>
+                    <button
+                      className={`p-1   bg-gray-100  transition hover:bg-blue-100 px-3
+                      }`}
+                    >
+                      {loading ? <Skeleton width={200} /> : artOne?.category}
                     </button>
                   </div>
 
                   <h1 className="text-2xl lg:text-4xl md:text-2xl  font-title font-medium ">
-                    {article1.title}
+                    {loading ? <Skeleton width height={20} /> : artOne?.title}
                   </h1>
-                  <p className="text-gray-700 my-5">
-                    Heading Here is example of hedings. You can use this heading
-                    by following markdownify rules. For example: use # for
-                    heading 1 and use ###### for heading 6.
+                  <p className={`text-gray-700 ${!loading && "my-5"}`}>
+                    {loading ? (
+                      <Skeleton width count={3} />
+                    ) : (
+                      artOne?.description[0]
+                    )}
                   </p>
                   <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
-                    Read Full Article
+                    {loading ? (
+                      <Skeleton width height={20} />
+                    ) : (
+                      "Read Full Article"
+                    )}
                   </button>
                 </div>
               </article>
-              {restArticle.map((article) => {
-                const { url, title } = article;
+              <Loader loading={loading} />
+              <Loader loading={loading} />
+              <Loader loading={loading} />
+              <Loader loading={loading} />
+              <Loader loading={loading} />
+              <Loader loading={loading} />
+
+              {restArt?.map((article) => {
+                const { url, title, _id, category, description, createdAt } =
+                  article;
 
                 return (
-                  <article className="shadow-md p-5 ">
+                  <article className="shadow-md p-5 " key={_id}>
                     <div className="articles-img relative">
-                      <img src={url} alt={title} className="w-full" />
+                      {loading ? (
+                        <Skeleton height={200} />
+                      ) : (
+                        <img src={url} alt={title} className="w-full" />
+                      )}
+                      {/* <img src={url} alt={title} className="w-full" /> */}
                       <div className="absolute right-4 top-2">
                         <button className="p-1 px-3 mr-3 bg-slate-600 text-gray-100 text-xs">
-                          04 JUN 2022
+                          {dateFormat(createdAt, "dd  mmm yyyy")}
                         </button>
                         <button className="p-1 px-3 bg-slate-600 text-gray-100 text-xs">
                           3 MINUTES READ
@@ -69,18 +107,14 @@ const Articles = () => {
                     <div className="articles-content">
                       <div className="content-tag my-3">
                         <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                          Travel
+                          {category}
                         </button>
                       </div>
 
                       <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium">
-                        {title}
+                        {loading ? <Skeleton width height={20} /> : title}
                       </h1>
-                      <p className="text-gray-700 my-5">
-                        Heading Here is example of hedings. You can use this
-                        heading by following markdownify rules. For example: use
-                        # for heading 1 and use ###### for heading 6.
-                      </p>
+                      <p className="text-gray-700 my-5">{description[0]}</p>
                       <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
                         Read Full Article
                       </button>
@@ -105,59 +139,69 @@ const Articles = () => {
             </div>
           </div>
           <div className="sidebar">
-            <article className="shadow-md p-5 ">
-              <div className="founder-img">
-                <img
-                  src="https://demo.gethugothemes.com/reporter/site/images/author_hu0485d2e8fa13233fcc57e27aca4c018d_78828_420x0_resize_q100_h2_box.webp"
-                  alt="images"
-                  className="w-full"
-                />
-              </div>
-              <div className="founder-content">
-                <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium mt-3">
-                  Md Ariful Islam
-                </h1>
-                <p className="text-gray-700 my-3">
-                  Hello, I’m Md Ariful Islam. A Future Content writter, Web
-                  Developer and Story teller. Working as a MERN Stack Developer
-                  Last Two Years.
-                </p>
-                <button className="border-2 transition hover:bg-emerald-500 uppercase px-3 font-medium text-sm hover:text-gray-100 hover:border-emerald-500 p-2 ">
-                  Know More
-                </button>
-              </div>
-            </article>
-            <h1 className="font-title py-5 font-medium text-3xl">
-              Recommended
-            </h1>
-
-            <figure className="shadow-md p-5 flex flex-col gap-5">
-              <article className="border-b border-dashed">
-                <div className="articles-img relative">
+            {loading ? (
+              <Loader loading={loading} />
+            ) : (
+              <article className="shadow-md p-5 ">
+                <div className="founder-img">
                   <img
-                    src="https://demo.gethugothemes.com/reporter/site/images/post/post-9_hucc85ebe7dc4f542e1229c0ab10f23918_361394_420x280_fill_q100_h2_box_smart1.webp"
+                    src="https://demo.gethugothemes.com/reporter/site/images/author_hu0485d2e8fa13233fcc57e27aca4c018d_78828_420x0_resize_q100_h2_box.webp"
                     alt="images"
                     className="w-full"
                   />
-                  <div className="absolute right-4 top-2">
-                    <button className="p-1 px-3 bg-slate-600 text-gray-100 text-xs">
-                      3 MINUTES READ
-                    </button>
-                  </div>
                 </div>
-                <div className="articles-content mb-5">
-                  <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium my-3">
-                    Portugal and France Now Allow Unvaccinated Tourists
+                <div className="founder-content">
+                  <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium mt-3">
+                    Md Ariful Islam
                   </h1>
-                  <p className="text-gray-700 my-5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor …
+                  <p className="text-gray-700 my-3">
+                    Hello, I’m Md Ariful Islam. A Future Content writter, Web
+                    Developer and Story teller. Working as a MERN Stack
+                    Developer Last Two Years.
                   </p>
-                  <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
-                    Read Full Article
+                  <button className="border-2 transition hover:bg-emerald-500 uppercase px-3 font-medium text-sm hover:text-gray-100 hover:border-emerald-500 p-2 ">
+                    Know More
                   </button>
                 </div>
               </article>
+            )}
+
+            <h1 className="font-title py-5 font-medium text-3xl">
+              {loading ? <Skeleton width height={20} /> : "Recommended"}
+            </h1>
+
+            <figure className="shadow-md p-5 flex flex-col gap-5">
+              {loading ? (
+                <Loader loading={loading} />
+              ) : (
+                <article className="border-b border-dashed">
+                  <div className="articles-img relative">
+                    <img
+                      src="https://demo.gethugothemes.com/reporter/site/images/post/post-9_hucc85ebe7dc4f542e1229c0ab10f23918_361394_420x280_fill_q100_h2_box_smart1.webp"
+                      alt="images"
+                      className="w-full"
+                    />
+                    <div className="absolute right-4 top-2">
+                      <button className="p-1 px-3 bg-slate-600 text-gray-100 text-xs">
+                        3 MINUTES READ
+                      </button>
+                    </div>
+                  </div>
+                  <div className="articles-content mb-5">
+                    <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium my-3">
+                      Portugal and France Now Allow Unvaccinated Tourists
+                    </h1>
+                    <p className="text-gray-700 my-5">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor …
+                    </p>
+                    <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
+                      Read Full Article
+                    </button>
+                  </div>
+                </article>
+              )}
+
               <article className="border-b border-dashed  w-full flex items-center gap-3">
                 <div className="artcle-img w-1/3">
                   <img
