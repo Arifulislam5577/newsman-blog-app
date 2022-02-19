@@ -1,5 +1,52 @@
 export const blogs = [
   {
+    title: "The Complete JavaScript Course 2022: From Zero to Expert!",
+    url: "https://images.unsplash.com/photo-1619824130478-2fb945b98ae1?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8amF2YXNjcmlwdHx8fHx8fDE2NDUxMTAyMTc&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
+    description: [
+      "Today, more than 200 countries and territories are marking Safer Internet Day by calling on people to join together and make the Internet a safer and better place for all. And if there’s anyone who understands the urgency of working for a safer Internet, it’s parents.",
+
+      "The Internet has been vital to help parents balance work and parenting through a lingering pandemic, yet it’s hard to ignore the societal issues increasingly amplified online. And with children increasingly learning and socializing online, the reality is we can’t always be there to hold their hand.",
+
+      "What’s even more frightening is when government proposals undermine people’s best efforts to keep kids safe online by ignoring a simple truth: security is crucial to a safer Internet.",
+
+      "It might seem like an obvious statement, but it’s not.  ",
+
+      "Despite their best intentions, the UK’s Online Safety Act and the US’s EARN IT Act are examples of recent proposals that jeopardize the safety of virtually everyone online – including children – by attacking our strongest digital security shield: encryption. ",
+
+      "Encryption is a security technology that plays a vital role in our daily lives, yet most of us take for granted. It’s like the lock on your door that keeps our communications confidential and the personal information we share with those we trust – like location, medical history, and identity information – out of the hands of criminals.",
+
+      "Much like locking our doors helps keep our homes safe from external threats, Internet experts and civil society organizations worldwide agree you cannot have safe spaces online without strong digital locks like encryption. ",
+
+      "Let’s take a moment to consider the relationship between safety and security. ",
+
+      "Oxford Dictionary defines safety as “the state of being safe and protected from danger or harm”. A secure Internet, on the other hand, is described by the Internet Society as one that is “resistant to attacks on its infrastructure, delivering a robust service to its user community”.",
+
+      "What does one have to do with the other? Encryption is critical because it acts like personal protective equipment for the inner workings of the Internet. It helps keep both its architecture and our billions of daily interactions with it confidential and authentic. ",
+
+      "How does this promote safety online?  ",
+
+      "An open letter by technology experts and civil society groups explains how the privacy encryption offers also helps keep children and other vulnerable communities ‘resistant to attacks’ by shielding them from potential harm online. For instance, journalists, LGBTQ+ communities, and human rights defenders rely on the protection encryption offers to ensure they have safe spaces to work and interact online.",
+
+      "If the UK or US governments succeed in preventing users and businesses from using encrypted communications to keep our digital lives private, it would be like preventing from you from locking the doors to your home.  ",
+
+      "No responsible adult would advise a child to open the door to strangers. So why would a government propose a law that makes virtually everything you say, share, and do online vulnerable to anyone that wants access? ",
+
+      "The only way to make progress towards a safer Internet is to take encryption off the debate table once and for all.",
+
+      "Last October, millions of people and businesses worldwide participated in the first Global Encryption Day to ‘make the switch’ to encrypted communications. ",
+
+      "Even the Government of Canada recently acknowledged overwhelming public support for encrypted communications in a 2021 consultation report on its first legislative attempt at tackling online harms. ",
+
+      "The more governments can start on this sound footing, the faster we can get to productive conversations on real-world solutions to keep people and children safer online. ",
+
+      "And instead of spending public funds promoting bad legislation, governments should invest in promoting digital safety education and practices in our schools and homes, and exploring how to address societal problems before they become problems online. ",
+
+      "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
+    ],
+    category: "JavaScript",
+    reviews: [],
+  },
+  {
     title: "A safer Internet starts with more encryption ",
     url: "https://images.unsplash.com/photo-1590433332541-12e70dd1d4a6?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8aW50ZXJuZXR8fHx8fHwxNjQ1MTEwMDIz&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
 
@@ -46,6 +93,7 @@ export const blogs = [
     ],
 
     category: "Internet",
+    reviews: [],
   },
   {
     title: "MANRS in 2021: A Year of Growth and Change",
@@ -92,6 +140,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Internet",
+    reviews: [],
   },
   {
     title:
@@ -139,6 +188,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Internet",
+    reviews: [],
   },
   {
     title: "10 JavaScript One-Liner Gems",
@@ -185,6 +235,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "JavaScript",
+    reviews: [],
   },
   {
     title: "The Modern JavaScript Tutorial",
@@ -231,53 +282,9 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "JavaScript",
+    reviews: [],
   },
-  {
-    title: "The Complete JavaScript Course 2022: From Zero to Expert!",
-    url: "https://images.unsplash.com/photo-1619824130478-2fb945b98ae1?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8amF2YXNjcmlwdHx8fHx8fDE2NDUxMTAyMTc&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
-    description: [
-      "Today, more than 200 countries and territories are marking Safer Internet Day by calling on people to join together and make the Internet a safer and better place for all. And if there’s anyone who understands the urgency of working for a safer Internet, it’s parents.",
 
-      "The Internet has been vital to help parents balance work and parenting through a lingering pandemic, yet it’s hard to ignore the societal issues increasingly amplified online. And with children increasingly learning and socializing online, the reality is we can’t always be there to hold their hand.",
-
-      "What’s even more frightening is when government proposals undermine people’s best efforts to keep kids safe online by ignoring a simple truth: security is crucial to a safer Internet.",
-
-      "It might seem like an obvious statement, but it’s not.  ",
-
-      "Despite their best intentions, the UK’s Online Safety Act and the US’s EARN IT Act are examples of recent proposals that jeopardize the safety of virtually everyone online – including children – by attacking our strongest digital security shield: encryption. ",
-
-      "Encryption is a security technology that plays a vital role in our daily lives, yet most of us take for granted. It’s like the lock on your door that keeps our communications confidential and the personal information we share with those we trust – like location, medical history, and identity information – out of the hands of criminals.",
-
-      "Much like locking our doors helps keep our homes safe from external threats, Internet experts and civil society organizations worldwide agree you cannot have safe spaces online without strong digital locks like encryption. ",
-
-      "Let’s take a moment to consider the relationship between safety and security. ",
-
-      "Oxford Dictionary defines safety as “the state of being safe and protected from danger or harm”. A secure Internet, on the other hand, is described by the Internet Society as one that is “resistant to attacks on its infrastructure, delivering a robust service to its user community”.",
-
-      "What does one have to do with the other? Encryption is critical because it acts like personal protective equipment for the inner workings of the Internet. It helps keep both its architecture and our billions of daily interactions with it confidential and authentic. ",
-
-      "How does this promote safety online?  ",
-
-      "An open letter by technology experts and civil society groups explains how the privacy encryption offers also helps keep children and other vulnerable communities ‘resistant to attacks’ by shielding them from potential harm online. For instance, journalists, LGBTQ+ communities, and human rights defenders rely on the protection encryption offers to ensure they have safe spaces to work and interact online.",
-
-      "If the UK or US governments succeed in preventing users and businesses from using encrypted communications to keep our digital lives private, it would be like preventing from you from locking the doors to your home.  ",
-
-      "No responsible adult would advise a child to open the door to strangers. So why would a government propose a law that makes virtually everything you say, share, and do online vulnerable to anyone that wants access? ",
-
-      "The only way to make progress towards a safer Internet is to take encryption off the debate table once and for all.",
-
-      "Last October, millions of people and businesses worldwide participated in the first Global Encryption Day to ‘make the switch’ to encrypted communications. ",
-
-      "Even the Government of Canada recently acknowledged overwhelming public support for encrypted communications in a 2021 consultation report on its first legislative attempt at tackling online harms. ",
-
-      "The more governments can start on this sound footing, the faster we can get to productive conversations on real-world solutions to keep people and children safer online. ",
-
-      "And instead of spending public funds promoting bad legislation, governments should invest in promoting digital safety education and practices in our schools and homes, and exploring how to address societal problems before they become problems online. ",
-
-      "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
-    ],
-    category: "JavaScript",
-  },
   {
     title: "Internationalization vs Localization: What’s the Difference?",
     url: "https://images.unsplash.com/photo-1526498460520-4c246339dccb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8amF2YXNjcmlwdHx8fHx8fDE2NDUxMTAyMjM&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
@@ -323,6 +330,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "React Js",
+    reviews: [],
   },
   {
     title: "10 Common Mistakes in Software Localization and How to Avoid Them",
@@ -369,6 +377,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "React Js",
+    reviews: [],
   },
   {
     title:
@@ -416,6 +425,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "React Js",
+    reviews: [],
   },
   {
     title: "Is Oatmeal A Good Moisturizer? Benefits + Organic Face Mask Recipe",
@@ -462,6 +472,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "React Js",
+    reviews: [],
   },
   {
     title:
@@ -509,6 +520,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Lifestyle",
+    reviews: [],
   },
   {
     title:
@@ -556,6 +568,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Lifestyle",
+    reviews: [],
   },
   {
     title: "Ten Beautiful Reasons We Can't Help But Fall In Love With Minimal.",
@@ -602,6 +615,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Lifestyle",
+    reviews: [],
   },
   {
     title:
@@ -649,6 +663,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "News",
+    reviews: [],
   },
   {
     title: "Shitty Things News Have Done In 2015.",
@@ -695,6 +710,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "News",
+    reviews: [],
   },
   {
     title: "The Reasons Why We Love News.",
@@ -741,6 +757,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "News",
+    reviews: [],
   },
 
   {
@@ -789,6 +806,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "website",
+    reviews: [],
   },
   {
     title: "Become a Better Pinterest Marketer with These Templates",
@@ -835,6 +853,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Tech",
+    reviews: [],
   },
   {
     title: "What is a Funnel Chart and How to Create One",
@@ -881,6 +900,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Tech",
+    reviews: [],
   },
   {
     title: "What Is Brand Identity and How Do You Develop One?",
@@ -927,6 +947,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Telephone",
+    reviews: [],
   },
   {
     title: "How to Make a Gantt Chart in Excel? (Ultimate Guide)",
@@ -973,6 +994,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Telephone",
+    reviews: [],
   },
   {
     title: "Netflix Culture: How the Brand Redefined Employee Success",
@@ -1019,6 +1041,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Telephone",
+    reviews: [],
   },
   {
     title: "The Keys to an Excellent HR Training and Development Program",
@@ -1065,6 +1088,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Travel",
+    reviews: [],
   },
   {
     title: "Navigate Crisis Management Using Crisis Communication Plans",
@@ -1111,6 +1135,7 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Travel",
+    reviews: [],
   },
   {
     title: "How to Make a Decision Tree in Excel",
@@ -1157,5 +1182,6 @@ export const blogs = [
       "At the end of the day, it’s down to adults. Parents and caregivers are just as responsible to keep children safe in our physical world than in our digital one. By proactively and consistently teaching kids how to play it safe as they discover both worlds, simple technology like door locks and encryption can be a powerful extra layer of protection.",
     ],
     category: "Travel",
+    reviews: [],
   },
 ];

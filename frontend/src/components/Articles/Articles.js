@@ -1,24 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import dateFormat from "dateformat";
+import { Link, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { BsArrowRight } from "react-icons/bs";
+
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogs } from "../../redux/action/blogsActions";
+import { blogsByCategory, fetchBlogs } from "../../redux/action/blogsActions";
 import Loader from "../Loader/Loader";
 
 const Articles = () => {
   let artOne, restArt;
   const dispatch = useDispatch();
-  const blogsDetails = useSelector((state) => state.blogsDetails);
+  const [activePage, setActivePage] = useState(1);
+  const [category, setCategory] = useState("");
+  const { keyword } = useParams();
 
-  const { loading, blogs, result, resultPerPage, totalBlogs } = blogsDetails;
+  const blogsDetails = useSelector((state) => state.blogsDetails);
+  const categoryBlog = useSelector((state) => state.categoryBlog);
+
+  const { loading, blogs, resultPerPage, result, totalBlogs, categories } =
+    blogsDetails;
+  const { loading: load, categoryBlogs } = categoryBlog;
+
+  const recommendedArt = blogs?.at(-1);
 
   [artOne, ...restArt] = blogs;
+  let totalPage = Math.ceil(totalBlogs / resultPerPage);
 
   useEffect(() => {
-    dispatch(fetchBlogs());
-  }, [dispatch]);
+    dispatch(fetchBlogs(activePage, category, keyword));
+    dispatch(blogsByCategory("JavaScript"));
+  }, [dispatch, activePage, category, keyword]);
 
   return (
     <section>
@@ -31,11 +43,13 @@ const Articles = () => {
                   {loading ? (
                     <Skeleton height={200} />
                   ) : (
-                    <img
-                      src={artOne?.url}
-                      alt={artOne?.title}
-                      className="w-full"
-                    />
+                    <Link to={`/article/${artOne?._id}`}>
+                      <img
+                        src={artOne?.url}
+                        alt={artOne?.title}
+                        className="w-full"
+                      />
+                    </Link>
                   )}
                   <div className="absolute right-4 top-2">
                     <button className="p-1 px-5 mr-3 bg-slate-600 text-gray-100 text-xs">
@@ -56,8 +70,10 @@ const Articles = () => {
                     </button>
                   </div>
 
-                  <h1 className="text-2xl lg:text-4xl md:text-2xl  font-title font-medium ">
-                    {loading ? <Skeleton width height={20} /> : artOne?.title}
+                  <h1 className="text-2xl lg:text-4xl md:text-2xl  font-title font-medium hover:text-emerald-500 transition">
+                    <Link to={`/article/${artOne?._id}`}>
+                      {loading ? <Skeleton width height={20} /> : artOne?.title}
+                    </Link>
                   </h1>
                   <p className={`text-gray-700 ${!loading && "my-5"}`}>
                     {loading ? (
@@ -70,17 +86,23 @@ const Articles = () => {
                     {loading ? (
                       <Skeleton width height={20} />
                     ) : (
-                      "Read Full Article"
+                      <Link to={`/article/${artOne?._id}`}>
+                        "Read Full Article"
+                      </Link>
                     )}
                   </button>
                 </div>
               </article>
-              <Loader loading={loading} />
-              <Loader loading={loading} />
-              <Loader loading={loading} />
-              <Loader loading={loading} />
-              <Loader loading={loading} />
-              <Loader loading={loading} />
+              {loading && (
+                <>
+                  <Loader loading={loading} />
+                  <Loader loading={loading} />
+                  <Loader loading={loading} />
+                  <Loader loading={loading} />
+                  <Loader loading={loading} />
+                  <Loader loading={loading} />
+                </>
+              )}
 
               {restArt?.map((article) => {
                 const { url, title, _id, category, description, createdAt } =
@@ -92,7 +114,9 @@ const Articles = () => {
                       {loading ? (
                         <Skeleton height={200} />
                       ) : (
-                        <img src={url} alt={title} className="w-full" />
+                        <Link to={`/article/${_id}`}>
+                          <img src={url} alt={title} className="w-full" />
+                        </Link>
                       )}
                       {/* <img src={url} alt={title} className="w-full" /> */}
                       <div className="absolute right-4 top-2">
@@ -111,32 +135,38 @@ const Articles = () => {
                         </button>
                       </div>
 
-                      <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium">
-                        {loading ? <Skeleton width height={20} /> : title}
+                      <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium hover:text-emerald-500 transition">
+                        {loading ? (
+                          <Skeleton width height={20} />
+                        ) : (
+                          <Link to={`/article/${_id}`}>{title}</Link>
+                        )}
                       </h1>
                       <p className="text-gray-700 my-5">{description[0]}</p>
                       <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
-                        Read Full Article
+                        <Link to={`/article/${_id}`}>"Read Full Article"</Link>
                       </button>
                     </div>
                   </article>
                 );
               })}
             </div>
-            <div className="paginate my-10 text-center flex gap-3 justify-center">
-              <button className="p-1 px-5 border bg-emerald-500 font-medium hover:bg-emerald-500 transition">
-                1
-              </button>
-              <button className="p-1 px-5 border  font-medium hover:bg-emerald-500 transition">
-                2
-              </button>
-              <button className="p-1 px-5 border  font-medium hover:bg-emerald-500 transition">
-                3
-              </button>
-              <button className="p-1 px-5 border  font-medium hover:bg-emerald-500 transition">
-                <BsArrowRight />
-              </button>
-            </div>
+            {result > totalPage && (
+              <div className="paginate my-10 text-center flex gap-3 justify-center">
+                {!isNaN(totalPage) &&
+                  [...Array(totalPage).keys()].map((page) => (
+                    <button
+                      className={`p-1 px-5 border ${
+                        activePage === page + 1 && "bg-emerald-500 "
+                      } font-medium hover:bg-emerald-100 transition`}
+                      key={page + 1}
+                      onClick={() => setActivePage(page + 1)}
+                    >
+                      {page + 1}
+                    </button>
+                  ))}
+              </div>
+            )}
           </div>
           <div className="sidebar">
             {loading ? (
@@ -176,11 +206,14 @@ const Articles = () => {
               ) : (
                 <article className="border-b border-dashed">
                   <div className="articles-img relative">
-                    <img
-                      src="https://demo.gethugothemes.com/reporter/site/images/post/post-9_hucc85ebe7dc4f542e1229c0ab10f23918_361394_420x280_fill_q100_h2_box_smart1.webp"
-                      alt="images"
-                      className="w-full"
-                    />
+                    <Link to={`/article/${recommendedArt?._id}`}>
+                      <img
+                        src={recommendedArt?.url}
+                        alt={recommendedArt?.title}
+                        className="w-full"
+                      />
+                    </Link>
+
                     <div className="absolute right-4 top-2">
                       <button className="p-1 px-3 bg-slate-600 text-gray-100 text-xs">
                         3 MINUTES READ
@@ -188,127 +221,81 @@ const Articles = () => {
                     </div>
                   </div>
                   <div className="articles-content mb-5">
-                    <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium my-3">
-                      Portugal and France Now Allow Unvaccinated Tourists
+                    <h1 className="text-xl lg:text-2xl md:text-xl  font-title font-medium my-3 hover:text-emerald-500 transition">
+                      <Link to={`/article/${recommendedArt?._id}`}>
+                        {recommendedArt?.title}
+                      </Link>
                     </h1>
                     <p className="text-gray-700 my-5">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor …
+                      {recommendedArt?.description[0].slice(0, 100)}...
                     </p>
                     <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
-                      Read Full Article
+                      <Link to={`/article/${recommendedArt?._id}`}>
+                        Read Full Article
+                      </Link>
                     </button>
                   </div>
                 </article>
               )}
 
-              <article className="border-b border-dashed  w-full flex items-center gap-3">
-                <div className="artcle-img w-1/3">
-                  <img
-                    src="https://demo.gethugothemes.com/reporter/site/images/post/post-2_huab157a7c4ddb780fd44cc187010cbb7a_186622_80x80_fill_q100_h2_box_smart1.webp"
-                    alt="tour"
-                    className="w-full"
-                  />
-                </div>
-                <div className="article-content w-2/3 mb-5">
-                  <h2 className="font-title text-xl">
-                    These Are Making It Easier To Visit
-                  </h2>
-                  <p className="text-sm text-gray-700">
-                    Heading Here is example of hedings. You can use …
-                  </p>
-                </div>
-              </article>
-              <article className="border-b border-dashed  w-full flex items-center gap-3">
-                <div className="artcle-img w-1/3">
-                  <img
-                    src="https://demo.gethugothemes.com/reporter/site/images/post/post-2_huab157a7c4ddb780fd44cc187010cbb7a_186622_80x80_fill_q100_h2_box_smart1.webp"
-                    alt="tour"
-                    className="w-full"
-                  />
-                </div>
-                <div className="article-content w-2/3 mb-5">
-                  <h2 className="font-title text-xl">
-                    These Are Making It Easier To Visit
-                  </h2>
-                  <p className="text-sm text-gray-700">
-                    Heading Here is example of hedings. You can use …
-                  </p>
-                </div>
-              </article>
-              <article className="border-b border-dashed  w-full flex items-center gap-3">
-                <div className="artcle-img w-1/3">
-                  <img
-                    src="https://demo.gethugothemes.com/reporter/site/images/post/post-2_huab157a7c4ddb780fd44cc187010cbb7a_186622_80x80_fill_q100_h2_box_smart1.webp"
-                    alt="tour"
-                    className="w-full"
-                  />
-                </div>
-                <div className="article-content w-2/3 mb-5">
-                  <h2 className="font-title text-xl">
-                    These Are Making It Easier To Visit
-                  </h2>
-                  <p className="text-sm text-gray-700">
-                    Heading Here is example of hedings. You can use …
-                  </p>
-                </div>
-              </article>
-              <article className="  w-full flex items-center gap-3">
-                <div className="artcle-img w-1/3">
-                  <img
-                    src="https://demo.gethugothemes.com/reporter/site/images/post/post-2_huab157a7c4ddb780fd44cc187010cbb7a_186622_80x80_fill_q100_h2_box_smart1.webp"
-                    alt="tour"
-                    className="w-full"
-                  />
-                </div>
-                <div className="article-content w-2/3 mb-5">
-                  <h2 className="font-title text-xl">
-                    These Are Making It Easier To Visit
-                  </h2>
-                  <p className="text-sm text-gray-700">
-                    Heading Here is example of hedings. You can use …
-                  </p>
-                </div>
-              </article>
+              {loading && (
+                <>
+                  <Loader loading={load} />
+                  <Loader loading={load} />
+                  <Loader loading={load} />
+                </>
+              )}
+
+              {!load &&
+                categoryBlogs?.map((article) => {
+                  const { title, url, _id, description } = article;
+
+                  return (
+                    <article
+                      className="border-b border-dashed  w-full flex items-center gap-3"
+                      key={_id}
+                    >
+                      <div className="artcle-img w-1/3">
+                        <Link to={`/article/${_id}`}>
+                          <img src={url} alt={title} className="w-full" />
+                        </Link>
+                      </div>
+                      <div className="article-content w-2/3 mb-5">
+                        <h2 className="font-title text-md hover:text-emerald-500 transition">
+                          <Link to={`/article/${_id}`}>{title}</Link>
+                        </h2>
+                        <p className="text-sm text-gray-700">
+                          {description[0].slice(0, 20)}...
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
             </figure>
-            <h1 className="font-title py-3 font-medium text-3xl my-10">
-              Categories
-            </h1>
-            <figure className="shadow-md p-6 flex flex-wrap gap-3">
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Computer(3)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Cruises(2)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Destination(1)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Internet(4)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Lifestyle(2)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                News(5)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Telephone(1)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Tips(1)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Travel(3)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Website(4)
-              </button>
-              <button className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition">
-                Hugo(2)
-              </button>
-            </figure>
+            {!loading && (
+              <>
+                <h1 className="font-title py-3 font-medium text-3xl my-10">
+                  Categories
+                </h1>
+                <figure className="shadow-md p-6 flex flex-wrap gap-3">
+                  <button
+                    className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition"
+                    onClick={() => setCategory("")}
+                  >
+                    All Blogs
+                  </button>
+                  {categories?.map((category) => (
+                    <button
+                      className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition"
+                      key={category}
+                      onClick={() => setCategory(category)}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </figure>
+              </>
+            )}
           </div>
         </div>
       </div>

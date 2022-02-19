@@ -12,6 +12,7 @@ export const getAllBlogs = asyncHandler(async (req, res) => {
 
   const blogs = await apiFeature.query;
   const result = await blogs.length;
+  const categories = await BLOG.distinct("category");
 
   if (blogs) {
     res.status(200).json({
@@ -19,6 +20,7 @@ export const getAllBlogs = asyncHandler(async (req, res) => {
       resultPerPage,
       result,
       blogs,
+      categories,
     });
   } else {
     res.status(404).json({ message: "No blogs found" });
