@@ -6,6 +6,9 @@ import {
   BLOGS_CATEGORY_REQUEST,
   BLOGS_CATEGORY_SUCCESS,
   BLOGS_CATEGORY_FAIL,
+  BLOG_BY_ID_REQUEST,
+  BLOG_BY_ID_SUCCESS,
+  BLOG_BY_ID_FAIL,
 } from "../constants/constants";
 
 export const fetchBlogs =
@@ -64,6 +67,29 @@ export const blogsByCategory = (category) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: BLOGS_CATEGORY_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.response,
+    });
+  }
+};
+
+export const blogById = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: BLOG_BY_ID_REQUEST });
+
+    let API = `http://localhost:5000/api/v1/blog`;
+
+    const { data } = await axios.get(`${API}/${id}`);
+
+    dispatch({
+      type: BLOG_BY_ID_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: BLOG_BY_ID_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

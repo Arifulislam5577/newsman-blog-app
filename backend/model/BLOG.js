@@ -1,12 +1,17 @@
 import mongoose from "mongoose";
 
+const commentSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  comment: { type: String, required: true },
+});
+
 const blogSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
     url: { type: String, required: true },
     description: { type: Array, required: true },
     category: { type: String, required: true },
-    reviews: { type: Array },
+    comments: [commentSchema],
   },
   { timestamps: true }
 );

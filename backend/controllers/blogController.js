@@ -28,9 +28,27 @@ export const getAllBlogs = asyncHandler(async (req, res) => {
 });
 
 export const getAllBlog = asyncHandler(async (req, res) => {
-  const blog = await BLOG.findById({ _id: req.params.id });
+  const blog = await BLOG.findOne({ _id: req.params.id });
   if (blog) {
     res.status(200).json(blog);
+  } else {
+    res.status(404).json({ message: "No blog found" });
+  }
+});
+
+export const createNewComment = asyncHandler(async (req, res) => {
+  const blog = await BLOG.findById({ _id: req.params.id });
+  if (blog) {
+    const comment = {
+      name: req.body.name,
+      comment: req.body.comment,
+      user: req.user._id,
+    };
+
+    blog.comments.push(comment);
+
+    await blog.save();
+    res.status(200).json({ message: "Comment added" });
   } else {
     res.status(404).json({ message: "No blog found" });
   }

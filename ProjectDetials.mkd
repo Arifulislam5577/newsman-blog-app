@@ -1,6 +1,0 @@
-##SCHEMA
-
-- images
-- title
-- description
-- category
