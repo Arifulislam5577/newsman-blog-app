@@ -85,11 +85,7 @@ const SingleArticle = () => {
                 {loading ? (
                   <Skeleton width count={3} />
                 ) : (
-                  blog?.description?.map((des, i) => (
-                    <p className="my-5" key={i}>
-                      {des}
-                    </p>
-                  ))
+                  <p className="my-5">{blog?.description}</p>
                 )}
               </div>
             </div>

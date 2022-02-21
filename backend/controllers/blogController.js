@@ -36,6 +36,35 @@ export const getAllBlog = asyncHandler(async (req, res) => {
   }
 });
 
+export const deleteBlogPost = asyncHandler(async (req, res) => {
+  await BLOG.findByIdAndDelete({ _id: req.params.id });
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});
+
+export const createBlog = asyncHandler(async (req, res) => {
+  const { title, description, url, category } = req.body;
+
+  const blog = await BLOG.findOne({ title });
+
+  if (blog) {
+    res.status(400).json({ message: "Blog already exists" });
+  } else {
+    const newBlog = await BLOG.create({ title, description, url, category });
+
+    if (newBlog) {
+      res.status(201).json({
+        title: newBlog.title,
+        description: newBlog.description,
+        url: newBlog.url,
+        category: newBlog.category,
+      });
+    }
+  }
+});
+
 export const createNewComment = asyncHandler(async (req, res) => {
   const blog = await BLOG.findById({ _id: req.params.id });
   if (blog) {

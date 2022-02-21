@@ -1,35 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
-import { fetchBlogs } from "../../redux/action/blogsActions";
+import {
+  createBlog,
+  deleteBlogPost,
+  fetchBlogs,
+} from "../../redux/action/blogsActions";
 import MiniLoader from "../Loader/MiniLoader";
+import { FaSpinner } from "react-icons/fa";
+import {
+  BLOG_DELETE_RESET,
+  CREATE_POST_RESET,
+} from "../../redux/constants/constants";
 
 const Admin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activePage, setActivePage] = useState(1);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
+  const [desc, setDesc] = useState("");
 
   const blogsDetails = useSelector((state) => state.blogsDetails);
+  const createPost = useSelector((state) => state.createPost);
+  const deleteBlog = useSelector((state) => state.deleteBlog);
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { postLoading, PostSuccess, error } = createPost;
   const { blogs, loading, resultPerPage, totalBlogs, categories } =
     blogsDetails;
   let totalPage = Math.ceil(totalBlogs / resultPerPage);
 
   const handlePostDelete = (id) => {
-    console.log(id);
+    dispatch(deleteBlogPost(id));
   };
+  const url = image;
+  const description = desc;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(image.slice(12));
-    console.log(title, category, image, description);
+
+    dispatch(createBlog(title, url, description, category));
   };
   useEffect(() => {
+    if (!userInfo.isAdmin) {
+      navigate("/");
+    }
+    if (deleteBlog?.status) {
+      dispatch({ type: BLOG_DELETE_RESET });
+    }
+    if (PostSuccess) {
+      dispatch({ type: CREATE_POST_RESET });
+      setTitle("");
+      setCategory("");
+      setImage("");
+      setDesc("");
+    }
     dispatch(fetchBlogs(activePage));
-  }, [dispatch, activePage]);
+  }, [dispatch, activePage, PostSuccess, navigate, userInfo, deleteBlog]);
   return (
     <section className="w-full py-5">
       <div className="container">
@@ -40,10 +69,17 @@ const Admin = () => {
             </h1>
 
             <form className="shadow-sm" onSubmit={handleSubmit}>
+              {error && (
+                <div className="mb-3 ">
+                  <h2 className="p-3 bg-orange-500 text-gray-100 w-full">
+                    {error}
+                  </h2>
+                </div>
+              )}
               <div className="mb-3">
                 <input
                   type="text"
-                  placeholder="post title"
+                  placeholder="title"
                   className="p-3 rounded-none border focus:outline-none w-full"
                   required
                   value={title}
@@ -67,9 +103,10 @@ const Admin = () => {
               </div>
               <div className="mb-3">
                 <input
-                  type="file"
+                  type="text"
                   className="p-3 rounded-none border focus:outline-none w-full"
                   required
+                  placeholder="image url"
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                 />
@@ -77,19 +114,26 @@ const Admin = () => {
               <div className="mb-3">
                 <textarea
                   type="text"
-                  placeholder="post description"
+                  placeholder="desc"
                   className="p-3 rounded-none border focus:outline-none w-full"
                   required
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
                 />
               </div>
               <div className="mb-3">
                 <button
-                  className="w-full p-3 px-5 bg-emerald-500 text-gray-100"
+                  className="w-full p-3 px-5 bg-emerald-500 text-gray-100 uppercase"
                   type="submit"
                 >
-                  create post
+                  {postLoading ? (
+                    <FaSpinner
+                      icon="spinner"
+                      className="spinner m-auto text-2xl"
+                    />
+                  ) : (
+                    "create post"
+                  )}
                 </button>
               </div>
             </form>

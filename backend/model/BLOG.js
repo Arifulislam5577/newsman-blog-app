@@ -9,7 +9,7 @@ const blogSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
     url: { type: String, required: true },
-    description: { type: Array, required: true },
+    description: { type: String, required: true },
     category: { type: String, required: true },
     comments: [commentSchema],
   },

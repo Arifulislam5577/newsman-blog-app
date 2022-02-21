@@ -12,6 +12,12 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAIL,
   CREATE_COMMENT_RESET,
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAIL,
+  CREATE_POST_RESET,
+  BLOG_DELETE_SUCCESS,
+  BLOG_DELETE_RESET,
 } from "../constants/constants";
 
 export const blogsReducers = (state = { blogs: [] }, action) => {
@@ -103,6 +109,46 @@ export const createCommentReducer = (state = {}, action) => {
       return {
         error: action.payload,
       };
+    default:
+      return state;
+  }
+};
+
+export const createPostReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CREATE_POST_REQUEST:
+      return {
+        postLoading: true,
+      };
+
+    case CREATE_POST_SUCCESS:
+      return {
+        postLoading: false,
+        PostSuccess: true,
+      };
+    case CREATE_POST_RESET:
+      return {};
+
+    case CREATE_POST_FAIL:
+      return {
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const blogDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case BLOG_DELETE_SUCCESS:
+      return {
+        loading: false,
+        status: action.payload,
+      };
+
+    case BLOG_DELETE_RESET:
+      return {};
+
     default:
       return state;
   }

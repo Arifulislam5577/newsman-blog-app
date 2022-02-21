@@ -79,7 +79,7 @@ const Articles = () => {
                     {loading ? (
                       <Skeleton width count={3} />
                     ) : (
-                      artOne?.description[0]
+                      artOne?.description?.slice(0, 50)
                     )}
                   </p>
                   <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
@@ -142,7 +142,9 @@ const Articles = () => {
                           <Link to={`/article/${_id}`}>{title}</Link>
                         )}
                       </h1>
-                      <p className="text-gray-700 my-5">{description[0]}</p>
+                      <p className="text-gray-700 my-5">
+                        {description?.slice(0, 20)}...
+                      </p>
                       <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
                         <Link to={`/article/${_id}`}>"Read Full Article"</Link>
                       </button>
@@ -227,7 +229,7 @@ const Articles = () => {
                       </Link>
                     </h1>
                     <p className="text-gray-700 my-5">
-                      {recommendedArt?.description[0].slice(0, 100)}...
+                      {recommendedArt?.description?.slice(0, 100)}...
                     </p>
                     <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
                       <Link to={`/article/${recommendedArt?._id}`}>
@@ -265,7 +267,7 @@ const Articles = () => {
                           <Link to={`/article/${_id}`}>{title}</Link>
                         </h2>
                         <p className="text-sm text-gray-700">
-                          {description[0].slice(0, 20)}...
+                          {description?.slice(0, 20)}...
                         </p>
                       </div>
                     </article>

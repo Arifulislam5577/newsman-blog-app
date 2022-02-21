@@ -13,6 +13,12 @@ import {
   CREATE_COMMENT_FAIL,
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_RESET,
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAIL,
+  CREATE_POST_RESET,
+  BLOG_DELETE_SUCCESS,
+  BLOG_DELETE_RESET,
 } from "../constants/constants";
 
 export const fetchBlogs =
@@ -50,6 +56,42 @@ export const fetchBlogs =
     }
   };
 
+export const createBlog =
+  (title, url, description, category) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: CREATE_POST_REQUEST });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      await axios.post(
+        `http://localhost:5000/api/v1/blog`,
+        { title, url, description, category },
+        config
+      );
+
+      dispatch({
+        type: CREATE_POST_SUCCESS,
+      });
+      dispatch({
+        type: CREATE_POST_RESET,
+      });
+    } catch (error) {
+      dispatch({
+        type: CREATE_POST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.response,
+      });
+    }
+  };
 export const blogsByCategory = (category) => async (dispatch) => {
   try {
     dispatch({ type: BLOGS_CATEGORY_REQUEST });
@@ -100,6 +142,29 @@ export const blogById = (id) => async (dispatch) => {
           : error.response,
     });
   }
+};
+
+export const deleteBlogPost = (id) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+  let API = `http://localhost:5000/api/v1/blog`;
+
+  const { data } = await axios.delete(`${API}/${id}`, config);
+
+  dispatch({
+    type: BLOG_DELETE_SUCCESS,
+    payload: data.status,
+  });
+  dispatch({
+    type: BLOG_DELETE_RESET,
+  });
 };
 
 export const createComment =
