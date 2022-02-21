@@ -36,7 +36,7 @@ export const login = asyncHandler(async (req, res) => {
   } else if (user && (await user.matchPassword(password))) {
     res.status(200).json({
       _id: user._id,
-      email: user.email,
+      name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),

@@ -4,15 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 import { userLoginActions } from "../../redux/action/userActions";
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-  const { userInfo, loading, error } = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = useSelector((state) => state.userLogin);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,10 +23,11 @@ const Login = () => {
       navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
+
   return (
     <section className="w-full py-5">
-      <div className="container">
-        <form className="w-3/4 m-auto" onSubmit={handleSubmit}>
+      <div className="container w-3/4 m-auto">
+        <form className="" onSubmit={handleSubmit}>
           {error && (
             <div className="mb-3 ">
               <h2 className="p-3 bg-orange-500 text-gray-100 w-full">
@@ -75,13 +75,21 @@ const Login = () => {
             </p>
           </div>
           <div className="mb-3">
-            <button className="uppercase p-3 text-center bg-emerald-500 text-gray-100 w-full">
-              {loading ? (
-                <FaSpinner icon="spinner" className="spinner m-auto text-2xl" />
-              ) : (
-                "Log in"
-              )}
-            </button>
+            {!userInfo && (
+              <button
+                className="uppercase p-3 text-center bg-emerald-500 text-gray-100 w-full"
+                type="submit"
+              >
+                {loading ? (
+                  <FaSpinner
+                    icon="spinner"
+                    className="spinner m-auto text-2xl"
+                  />
+                ) : (
+                  "Log in"
+                )}
+              </button>
+            )}
           </div>
         </form>
       </div>

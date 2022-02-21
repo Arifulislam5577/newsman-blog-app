@@ -41,8 +41,8 @@ export const userSignUpAction = (name, email, password) => async (dispatch) => {
   }
 };
 
-export const userLoginActions = (name, password) => async (dispatch) => {
-  dispatch({ type: USER_LOGIN_REQUEST, payload: { name, password } });
+export const userLoginActions = (email, password) => async (dispatch) => {
+  dispatch({ type: USER_LOGIN_REQUEST, payload: { email, password } });
   try {
     const config = {
       headers: {
@@ -52,7 +52,7 @@ export const userLoginActions = (name, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       `http://localhost:5000/api/v1/user/login`,
-      { name, password },
+      { email, password },
       config
     );
 

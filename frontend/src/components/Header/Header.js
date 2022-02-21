@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaSignInAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogOutAction } from "../../redux/action/userActions";
 const Header = () => {
+  const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.userLogin);
 
+  const handleLogOut = () => {
+    dispatch(userLogOutAction());
+    navigate("/");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,15 +47,28 @@ const Header = () => {
                 </button>
               </form>
             </li>
-            <li className="">
-              <Link
-                to="/login"
-                className="p-3 border flex items-center gap-2 px-5 bg-emerald-500 text-gray-100"
-              >
-                <FaUserAlt />
-                Login
-              </Link>
-            </li>
+            {!userInfo && (
+              <li className="uppercase">
+                <Link
+                  to="/login"
+                  className="p-3 border flex items-center gap-2 px-5 hover:bg-emerald-500 text-emerald-500 hover:text-gray-100 transition"
+                >
+                  <FaUserAlt />
+                  {userInfo ? userInfo.name : "LogIn"}
+                </Link>
+              </li>
+            )}
+            {userInfo && (
+              <li className="uppercase">
+                <button
+                  onClick={handleLogOut}
+                  className="p-3 border flex items-center gap-2 px-5 hover:bg-emerald-500 text-emerald-500 hover:text-gray-100 transition"
+                >
+                  <FaSignInAlt />
+                  Log out
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

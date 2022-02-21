@@ -9,6 +9,10 @@ import {
   BLOG_BY_ID_REQUEST,
   BLOG_BY_ID_SUCCESS,
   BLOG_BY_ID_FAIL,
+  CREATE_COMMENT_SUCCESS,
+  CREATE_COMMENT_FAIL,
+  CREATE_COMMENT_REQUEST,
+  CREATE_COMMENT_RESET,
 } from "../constants/constants";
 
 export const fetchBlogs =
@@ -97,3 +101,40 @@ export const blogById = (id) => async (dispatch) => {
     });
   }
 };
+
+export const createComment =
+  (id, name, comment) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: CREATE_COMMENT_REQUEST });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      await axios.post(
+        `http://localhost:5000/api/v1/blog/${id}`,
+        { name, comment },
+        config
+      );
+
+      dispatch({
+        type: CREATE_COMMENT_SUCCESS,
+      });
+      dispatch({
+        type: CREATE_COMMENT_RESET,
+      });
+    } catch (error) {
+      dispatch({
+        type: CREATE_COMMENT_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.response,
+      });
+    }
+  };

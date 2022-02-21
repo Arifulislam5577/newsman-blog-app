@@ -5,6 +5,7 @@ import {
   blogByIdReducer,
   blogsReducers,
   categoryBlogsReducers,
+  createCommentReducer,
 } from "../reducers/blogReducers";
 import { userLoginReducer, userSignupReducer } from "../reducers/userReducers";
 
@@ -14,6 +15,7 @@ const rootReducers = combineReducers({
   blogDetail: blogByIdReducer,
   userLogin: userLoginReducer,
   userSignup: userSignupReducer,
+  commentCreate: createCommentReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

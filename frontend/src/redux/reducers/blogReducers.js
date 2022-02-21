@@ -8,6 +8,10 @@ import {
   BLOG_BY_ID_REQUEST,
   BLOG_BY_ID_SUCCESS,
   BLOG_BY_ID_FAIL,
+  CREATE_COMMENT_REQUEST,
+  CREATE_COMMENT_SUCCESS,
+  CREATE_COMMENT_FAIL,
+  CREATE_COMMENT_RESET,
 } from "../constants/constants";
 
 export const blogsReducers = (state = { blogs: [] }, action) => {
@@ -72,6 +76,30 @@ export const blogByIdReducer = (state = {}, action) => {
       };
 
     case BLOG_BY_ID_FAIL:
+      return {
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const createCommentReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CREATE_COMMENT_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case CREATE_COMMENT_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case CREATE_COMMENT_RESET:
+      return {};
+
+    case CREATE_COMMENT_FAIL:
       return {
         error: action.payload,
       };

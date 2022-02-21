@@ -1,20 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { FaSpinner } from "react-icons/fa";
 import dateFormat from "dateformat";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { blogById } from "../../redux/action/blogsActions";
+import { useNavigate, useParams } from "react-router-dom";
+import { blogById, createComment } from "../../redux/action/blogsActions";
+import { CREATE_COMMENT_RESET } from "../../redux/constants/constants";
 
 const SingleArticle = () => {
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const blogDetail = useSelector((state) => state.blogDetail);
-
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const commentCreate = useSelector((state) => state.commentCreate);
   const { loading, error, blog } = blogDetail;
+  const {
+    loading: commentLoading,
+    error: commentError,
+    success,
+  } = commentCreate;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!userInfo) {
+      navigate(`/login?redirect=/article/${id}`);
+    } else {
+      dispatch(createComment(id, name, comment));
+    }
+  };
 
   useEffect(() => {
+    if (success) {
+      setName("");
+      setComment("");
+      dispatch({ type: CREATE_COMMENT_RESET });
+    }
+
     dispatch(blogById(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, success]);
 
   return (
     <section className="single-article my-5 w-full">
@@ -67,24 +94,44 @@ const SingleArticle = () => {
               </div>
             </div>
             <div className="comment-box my-5 w-full">
-              <form className="w-full">
+              <form className="w-full" onSubmit={handleSubmit}>
+                {commentError && (
+                  <div className="mb-3 ">
+                    <h2 className="p-3 bg-orange-500 text-gray-100 w-full">
+                      {commentError}
+                    </h2>
+                  </div>
+                )}
                 <input
                   type="text"
                   placeholder="Name"
                   className="border rounded-none p-3 w-full my-2 bg-gray-100 focus:shadow focus:outline-none"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <br />
                 <textarea
                   type="text"
                   placeholder="Your comment"
                   className="border rounded-none p-3 w-full my-2 bg-gray-100 focus:shadow focus:outline-none"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
                 />
                 <br />
+
                 <button
                   type="submit"
                   className="p-2  text-gray-100 transition bg-emerald-500 px-5 text-center"
                 >
-                  Comment
+                  {commentLoading ? (
+                    <FaSpinner
+                      icon="spinner"
+                      className="spinner m-auto text-2xl"
+                    />
+                  ) : (
+                    "comment"
+                  )}
                 </button>
               </form>
               <h2 className="uppercase my-5 font-bold">
