@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import DatabaseConnect from "./DbConfig/DbConfig.js";
 import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 import blogRouter from "./routes/blogRoute.js";
