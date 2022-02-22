@@ -44,7 +44,7 @@ const Admin = () => {
     dispatch(createBlog(title, url, description, category));
   };
   useEffect(() => {
-    if (!userInfo.isAdmin) {
+    if (!userInfo?.isAdmin) {
       navigate("/");
     }
     if (deleteBlog?.status) {
