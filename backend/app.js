@@ -18,6 +18,21 @@ DatabaseConnect();
 app.use("/api/v1/blog", blogRouter);
 app.use("/api/v1/user", userRouter);
 
+// --------------------------deployment------------------------------
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve("frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+// --------------------------deployment------------------------------
+
 app.use(notFound);
 app.use(errorHandler);
 

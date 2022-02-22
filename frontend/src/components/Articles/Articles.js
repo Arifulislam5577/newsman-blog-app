@@ -79,8 +79,9 @@ const Articles = () => {
                     {loading ? (
                       <Skeleton width count={3} />
                     ) : (
-                      artOne?.description?.slice(0, 50)
+                      artOne?.description?.slice(0, 150)
                     )}
+                    ...
                   </p>
                   <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
                     {loading ? (
@@ -143,7 +144,7 @@ const Articles = () => {
                         )}
                       </h1>
                       <p className="text-gray-700 my-5">
-                        {description?.slice(0, 20)}...
+                        {description?.slice(0, 100)}...
                       </p>
                       <button className="border-b-2 font-medium text-sm hover:text-emerald-500 transition">
                         <Link to={`/article/${_id}`}>"Read Full Article"</Link>
