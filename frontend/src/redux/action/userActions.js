@@ -19,7 +19,7 @@ export const userSignUpAction = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:5000/api/v1/user/register`,
+      `/api/v1/user/register`,
       { name, email, password },
       config
     );
@@ -51,7 +51,7 @@ export const userLoginActions = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:5000/api/v1/user/login`,
+      `/api/v1/user/login`,
       { email, password },
       config
     );
