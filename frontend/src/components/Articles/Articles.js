@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import dateFormat from "dateformat";
 import { BsSearch } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { blogsByCategory, fetchBlogs } from "../../redux/action/blogsActions";
+import { fetchBlogs } from "../../redux/action/blogsActions";
 import Loader from "../Loader/Loader";
 
 const Articles = () => {
+  let { category, keyword } = useParams();
+
   const navigate = useNavigate();
   let artOne, restArt;
   const dispatch = useDispatch();
   const [activePage, setActivePage] = useState(1);
-  const [category, setCategory] = useState("");
 
   const blogsDetails = useSelector((state) => state.blogsDetails);
   const categoryBlog = useSelector((state) => state.categoryBlog);
-  const [keyword, setKeyword] = useState("");
+  const [word, setWord] = useState("");
 
   const { loading, blogs, resultPerPage, result, totalBlogs, categories } =
     blogsDetails;
@@ -29,15 +30,17 @@ const Articles = () => {
   [artOne, ...restArt] = blogs;
   let totalPage = Math.ceil(totalBlogs / resultPerPage);
 
+  if (category === "all") {
+    category = "";
+  }
+
   useEffect(() => {
     dispatch(fetchBlogs(activePage, category, keyword));
-    dispatch(blogsByCategory("JavaScript"));
   }, [dispatch, activePage, category, keyword]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    navigate(`/search/${keyword}`);
+    navigate(`/search/${word}`);
   };
 
   return (
@@ -46,6 +49,13 @@ const Articles = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 my-10">
           <div className="ariticles-area lg:col-span-2 xl:col-span-2 mb-5">
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+              {result === 0 && (
+                <>
+                  <h1 className="w-full text-center font-bold uppercase text-3xl">
+                    No Result Found
+                  </h1>
+                </>
+              )}
               <article className="lg:col-span-2 xl:col-span-2 shadow-md p-6 ">
                 <div className="articles-img relative">
                   {loading ? (
@@ -185,9 +195,9 @@ const Articles = () => {
                 <input
                   type="text"
                   className="border rounded-none p-3 px-5 w-full focus:shadow focus:outline-none"
-                  placeholder="Title"
-                  value={keyword}
-                  onChange={(e) => setKeyword(e.target.value)}
+                  placeholder="Search"
+                  value={word}
+                  onChange={(e) => setWord(e.target.value)}
                 />
                 <button
                   type="submit"
@@ -308,7 +318,7 @@ const Articles = () => {
                 <figure className="shadow-md p-6 flex flex-wrap gap-3">
                   <button
                     className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition"
-                    onClick={() => setCategory("")}
+                    onClick={() => navigate(`/category/all}`)}
                   >
                     All Blogs
                   </button>
@@ -316,7 +326,7 @@ const Articles = () => {
                     <button
                       className="p-1 px-3 mr-3 bg-gray-100  hover:bg-blue-100 transition"
                       key={category}
-                      onClick={() => setCategory(category)}
+                      onClick={() => navigate(`/category/${category}`)}
                     >
                       {category}
                     </button>

@@ -1,19 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import {
-  FaUserAlt,
-  FaSignInAlt,
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaNewspaper,
-  FaBars,
-} from "react-icons/fa";
+import { FaSignInAlt, FaBars } from "react-icons/fa";
+import { FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogOutAction } from "../../redux/action/userActions";
+
 const Header = () => {
   const dispatch = useDispatch();
+
+  const [active, setActive] = useState(false);
 
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -22,13 +18,12 @@ const Header = () => {
     dispatch(userLogOutAction());
     navigate("/");
   };
-
   return (
     <header>
-      <div className="topbar py-1 bg-gray-200 hidden md:block">
+      <div className="topbar py-1 border-b ">
         <div className="container">
           <div className="topbar-menu flex items-center justify-between">
-            <ul className="left-menu flex items-center justify-between gap-5 uppercase">
+            <ul className="   left-menu flex items-center justify-between gap-5 uppercase">
               <li>
                 <Link to="#" className="text-xs">
                   docs
@@ -45,27 +40,30 @@ const Header = () => {
                 </Link>
               </li>
             </ul>
-            <ul className="right-menu flex items-center justify-between gap-5">
-              <li>
-                <Link to="#" className="text-xs">
-                  <FaFacebookF />
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-xs">
-                  <FaTwitter />
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-xs">
-                  <FaInstagram />
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-xs">
-                  <FaNewspaper />
-                </Link>
-              </li>
+            <ul className=" text-center">
+              <li className="md:w-2/4 lg:w-2/4 w-full order-2 "></li>
+              {!userInfo && (
+                <li className="uppercase order-1">
+                  <Link
+                    to="/login"
+                    className="  flex items-center gap-2  text-xs   justify-center"
+                  >
+                    <FiLogIn />
+                    {userInfo ? userInfo.name : "LogIn"}
+                  </Link>
+                </li>
+              )}
+              {userInfo && (
+                <li className="uppercase order-1">
+                  <button
+                    onClick={handleLogOut}
+                    className="  flex items-center gap-2  text-xs border-emerald-500  justify-center"
+                  >
+                    <FaSignInAlt />
+                    Log out
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -83,37 +81,143 @@ const Header = () => {
           Journalism Without Fear or Favour
         </p>
       </div>
-      <div className="menu-bar w-full bg-gray-100 py-3">
-        <div className="container flex items-center justify-between gap-3">
-          <button className="flex items-center justify-between gap-2">
+      <div className="menu-bar w-full border-b border-t py-3 hidden md:block">
+        <div className="container flex items-center justify-center gap-3">
+          <ul className="left-menu  flex items-center gap-5 uppercase justify-center">
+            <li>
+              <Link className="text-xs" to={`/category/all`}>
+                All Blogs
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/Internet`}>
+                Internet
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/JavaScript`}>
+                JavaScript
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/Lifestyle`}>
+                Lifestyle
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/News`}>
+                News
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/React`}>
+                React Js
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/Tech`}>
+                Tech
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/Telephone`}>
+                Telephone
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/Travel`}>
+                Travel
+              </Link>
+            </li>
+
+            <li>
+              <Link className="text-xs" to={`/category/website`}>
+                website
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="w-full border-b border-t py-3 block md:hidden">
+        <div className="container">
+          <button
+            className="flex items-center justify-between gap-2"
+            onClick={() => setActive(!active)}
+          >
             <FaBars />
             Category
           </button>
-          <ul className="w-32 md:w-32 text-center">
-            <li className="md:w-2/4 lg:w-2/4 w-full order-2 "></li>
-            {!userInfo && (
-              <li className="uppercase order-1">
-                <Link
-                  to="/login"
-                  className=" border flex items-center gap-2 p-2 text-xs text-emerald-500 border-emerald-500  justify-center"
-                >
-                  <FaUserAlt />
-                  {userInfo ? userInfo.name : "LogIn"}
+          {active && (
+            <ul className="left-menu  flex flex-col  gap-5 uppercase">
+              <li className="mt-5">
+                <Link className="text-xs" to={`/category/all`}>
+                  All Blogs
                 </Link>
               </li>
-            )}
-            {userInfo && (
-              <li className="uppercase order-1">
-                <button
-                  onClick={handleLogOut}
-                  className=" border flex items-center gap-2 px-5 text-xs border-emerald-500 text-emerald-500 p-2 justify-center"
-                >
-                  <FaSignInAlt />
-                  Log out
-                </button>
+
+              <li>
+                <Link className="text-xs" to={`/category/Internet`}>
+                  Internet
+                </Link>
               </li>
-            )}
-          </ul>
+
+              <li>
+                <Link className="text-xs" to={`/category/JavaScript`}>
+                  JavaScript
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/Lifestyle`}>
+                  Lifestyle
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/News`}>
+                  News
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/React`}>
+                  React Js
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/Tech`}>
+                  Tech
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/Telephone`}>
+                  Telephone
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/Travel`}>
+                  Travel
+                </Link>
+              </li>
+
+              <li>
+                <Link className="text-xs" to={`/category/website`}>
+                  website
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </header>
@@ -121,36 +225,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// // <ul className="left-menu flex items-center gap-5 uppercase">
-//             <li>
-//               <button className="text-xs">All Blogs</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">Internet</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">JavaScript</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">Lifestyle</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">News</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">React Js</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">Tech</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">Telephone</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">Travel</button>
-//             </li>
-//             <li>
-//               <button className="text-xs">website</button>
-//             </li>
-//           </ul>
