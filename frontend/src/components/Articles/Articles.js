@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dateFormat from "dateformat";
-import { Link, useParams } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -9,14 +10,15 @@ import { blogsByCategory, fetchBlogs } from "../../redux/action/blogsActions";
 import Loader from "../Loader/Loader";
 
 const Articles = () => {
+  const navigate = useNavigate();
   let artOne, restArt;
   const dispatch = useDispatch();
   const [activePage, setActivePage] = useState(1);
   const [category, setCategory] = useState("");
-  const { keyword } = useParams();
 
   const blogsDetails = useSelector((state) => state.blogsDetails);
   const categoryBlog = useSelector((state) => state.categoryBlog);
+  const [keyword, setKeyword] = useState("");
 
   const { loading, blogs, resultPerPage, result, totalBlogs, categories } =
     blogsDetails;
@@ -31,6 +33,12 @@ const Articles = () => {
     dispatch(fetchBlogs(activePage, category, keyword));
     dispatch(blogsByCategory("JavaScript"));
   }, [dispatch, activePage, category, keyword]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    navigate(`/search/${keyword}`);
+  };
 
   return (
     <section>
@@ -119,7 +127,7 @@ const Articles = () => {
                           <img src={url} alt={title} className="w-full" />
                         </Link>
                       )}
-                      {/* <img src={url} alt={title} className="w-full" /> */}
+
                       <div className="absolute right-4 top-2">
                         <button className="p-1 px-3 mr-3 bg-slate-600 text-gray-100 text-xs">
                           {dateFormat(createdAt, "dd  mmm yyyy")}
@@ -172,6 +180,23 @@ const Articles = () => {
             )}
           </div>
           <div className="sidebar">
+            {!loading && (
+              <form className="relative w-full mb-5" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  className="border rounded-none p-3 px-5 w-full focus:shadow focus:outline-none"
+                  placeholder="Title"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="absolute top-0 right-0 bottom-0 pl-5 cursor-pointer flex items-center justify-center bg-emerald-500 p-4"
+                >
+                  <BsSearch className=" text-gray-100 z-20 hover:text-gray-200" />
+                </button>
+              </form>
+            )}
             {loading ? (
               <Loader loading={loading} />
             ) : (
