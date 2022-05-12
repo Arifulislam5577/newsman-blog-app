@@ -3,7 +3,7 @@
 Newsman is a blog website built by M.E.R.N stack. There are different kinds of blog categories. Users can read any blog with details. If the user wants to comment any blog post, she/he needs to logged in. But if the user has no previous account then she/he needs to create a new account. After creating an account or logging in, she/he needs to provide his/her name and valueable comment. 
 
 
-<img src="https://res.cloudinary.com/dwrpcntox/image/upload/v1648128436/Shopping-cart/Untitled_design_1_trund8.png" width="100%"/>
+<img src="https://res.cloudinary.com/arif5577/image/upload/v1648128436/Shopping-cart/Untitled_design_1_trund8.png" width="100%"/>
 
 
 There is also an admin simple dashboard, where the admin can add new blog post , delete blog post and see all the blog post in the admin panel.
