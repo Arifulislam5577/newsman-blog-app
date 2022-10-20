@@ -23,6 +23,7 @@ const Articles = () => {
 
   const { loading, blogs, resultPerPage, result, totalBlogs, categories } =
     blogsDetails;
+
   const { loading: load, categoryBlogs } = categoryBlog;
 
   const recommendedArt = blogs?.at(-1);

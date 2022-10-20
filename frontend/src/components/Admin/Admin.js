@@ -35,18 +35,28 @@ const Admin = () => {
   const handlePostDelete = (id) => {
     dispatch(deleteBlogPost(id));
   };
+
+  const handleImg = (e) => {
+    const selectedImg = e.target.files[0];
+    previewImg(selectedImg);
+  };
+
+  const previewImg = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+  };
   const url = image;
   const description = desc;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(createBlog(title, url, description, category));
   };
+
   useEffect(() => {
-    if (!userInfo?.isAdmin) {
-      navigate("/");
-    }
     if (deleteBlog?.status) {
       dispatch({ type: BLOG_DELETE_RESET });
     }
@@ -101,23 +111,12 @@ const Admin = () => {
                   ))}
                 </select>
               </div>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  className="p-3 rounded-none border focus:outline-none w-full"
-                  required
-                  placeholder="image url"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </div>
 
               <div className="mb-3">
                 <input
                   className="block w-full text-sm text-gray-900 bg-white border border-gray-300 cursor-pointer p-3"
-                  aria-describedby="file_input_help"
-                  id="file_input"
                   type="file"
+                  onChange={(e) => handleImg(e)}
                 />
               </div>
               <div className="mb-3">

@@ -1,6 +1,7 @@
 import BLOG from "../model/BLOG.js";
 import asyncHandler from "express-async-handler";
 import ApiFeatures from "../utils/apiFeature.js";
+import { uplaodImg } from "../utils/upload.js";
 
 export const getAllBlogs = asyncHandler(async (req, res) => {
   const totalBlogs = await BLOG.countDocuments();
@@ -49,10 +50,14 @@ export const createBlog = asyncHandler(async (req, res) => {
 
   const blog = await BLOG.findOne({ title });
 
+  console.log(req.body);
+
   if (blog) {
     res.status(400).json({ message: "Blog already exists" });
   } else {
-    const newBlog = await BLOG.create({ title, description, url, category });
+    const imgUrl = await uplaodImg(url);
+    const newBlog = new BLOG({ title, description, url: imgUrl, category });
+    await newBlog.save();
 
     if (newBlog) {
       res.status(201).json({
