@@ -111,6 +111,15 @@ const Admin = () => {
                   onChange={(e) => setImage(e.target.value)}
                 />
               </div>
+
+              <div className="mb-3">
+                <input
+                  className="block w-full text-sm text-gray-900 bg-white border border-gray-300 cursor-pointer p-3"
+                  aria-describedby="file_input_help"
+                  id="file_input"
+                  type="file"
+                />
+              </div>
               <div className="mb-3">
                 <textarea
                   type="text"
@@ -147,10 +156,12 @@ const Admin = () => {
               <tbody>
                 {blogs?.map((blog) => (
                   <tr key={blog._id} className="text-left border p-5">
-                    <td className="p-3">{blog._id}</td>
                     <td className="p-3">
-                      <Link to={`/article/${blog._id}`}>
-                        {blog.title.slice(0, 20)}
+                      <Link
+                        to={`/article/${blog._id}`}
+                        className="hover:text-emerald-500"
+                      >
+                        {blog.title.split(" ").slice(0, 5).join(" ")}
                       </Link>
                       ...
                     </td>

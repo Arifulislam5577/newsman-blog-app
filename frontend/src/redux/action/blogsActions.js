@@ -12,7 +12,6 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAIL,
   CREATE_COMMENT_REQUEST,
-  CREATE_COMMENT_RESET,
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
@@ -185,9 +184,6 @@ export const createComment =
 
       dispatch({
         type: CREATE_COMMENT_SUCCESS,
-      });
-      dispatch({
-        type: CREATE_COMMENT_RESET,
       });
     } catch (error) {
       dispatch({

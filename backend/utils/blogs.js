@@ -50,14 +50,14 @@ export const blogs = [
     url: "https://images.unsplash.com/photo-1526498460520-4c246339dccb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8amF2YXNjcmlwdHx8fHx8fDE2NDUxMTAyMjM&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
     description:
       "In the run-up to the budget for the 2022-23 fiscal year (FY), the National Board of Revenue (NBR) has initiated discussions with various professional and business organisations—like the previous years. The finance ministry also does the same. The NBR's focus is mainly to seek fiscal proposals from the stakeholders. This is a commendable practice, which extends the opportunity to businesses and organisations to suggest not only how various sectors can get respite from tax burden, but also how to improve the revenue mobilisation by improving the collection system. It is widely discussed that despite Bangladesh's impressive growth, the domestic resource mobilisation is too poor. Unfortunately, the NBR is yet to gain any visible success in bringing all the eligible income earners under the tax net. It is hoped that, through such regular consultations between the NBR and stakeholders, a better tax system will come about in the near future.",
-    category: "React Js",
+    category: "React",
   },
   {
     title: "10 Common Mistakes in Software Localization and How to Avoid Them",
     url: "https://images.unsplash.com/photo-1544982877-f0f4427dee24?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8cmVhY3R8fHx8fHwxNjQ1MTEwMzQ2&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
     description:
       "In the run-up to the budget for the 2022-23 fiscal year (FY), the National Board of Revenue (NBR) has initiated discussions with various professional and business organisations—like the previous years. The finance ministry also does the same. The NBR's focus is mainly to seek fiscal proposals from the stakeholders. This is a commendable practice, which extends the opportunity to businesses and organisations to suggest not only how various sectors can get respite from tax burden, but also how to improve the revenue mobilisation by improving the collection system. It is widely discussed that despite Bangladesh's impressive growth, the domestic resource mobilisation is too poor. Unfortunately, the NBR is yet to gain any visible success in bringing all the eligible income earners under the tax net. It is hoped that, through such regular consultations between the NBR and stakeholders, a better tax system will come about in the near future.",
-    category: "React Js",
+    category: "React",
   },
   {
     title:
@@ -65,14 +65,14 @@ export const blogs = [
     url: "https://images.unsplash.com/photo-1526498460520-4c246339dccb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8cmVhY3R8fHx8fHwxNjQ1MTEwMzg2&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
     description:
       "In the run-up to the budget for the 2022-23 fiscal year (FY), the National Board of Revenue (NBR) has initiated discussions with various professional and business organisations—like the previous years. The finance ministry also does the same. The NBR's focus is mainly to seek fiscal proposals from the stakeholders. This is a commendable practice, which extends the opportunity to businesses and organisations to suggest not only how various sectors can get respite from tax burden, but also how to improve the revenue mobilisation by improving the collection system. It is widely discussed that despite Bangladesh's impressive growth, the domestic resource mobilisation is too poor. Unfortunately, the NBR is yet to gain any visible success in bringing all the eligible income earners under the tax net. It is hoped that, through such regular consultations between the NBR and stakeholders, a better tax system will come about in the near future.",
-    category: "React Js",
+    category: "React",
   },
   {
     title: "Is Oatmeal A Good Moisturizer? Benefits + Organic Face Mask Recipe",
     url: "https://images.unsplash.com/photo-1552308995-2baac1ad5490?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=778&ixid=MnwxfDB8MXxyYW5kb218MHx8cmVhY3R8fHx8fHwxNjQ1MTEwMzg4&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1280",
     description:
       "In the run-up to the budget for the 2022-23 fiscal year (FY), the National Board of Revenue (NBR) has initiated discussions with various professional and business organisations—like the previous years. The finance ministry also does the same. The NBR's focus is mainly to seek fiscal proposals from the stakeholders. This is a commendable practice, which extends the opportunity to businesses and organisations to suggest not only how various sectors can get respite from tax burden, but also how to improve the revenue mobilisation by improving the collection system. It is widely discussed that despite Bangladesh's impressive growth, the domestic resource mobilisation is too poor. Unfortunately, the NBR is yet to gain any visible success in bringing all the eligible income earners under the tax net. It is hoped that, through such regular consultations between the NBR and stakeholders, a better tax system will come about in the near future.",
-    category: "React Js",
+    category: "React",
   },
   {
     title:
