@@ -19,7 +19,7 @@ export const userSignUpAction = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/v1/user/register`,
+      `https://newsman-server.vercel.app/api/v1/user/register`,
       { name, email, password },
       config
     );
@@ -51,7 +51,7 @@ export const userLoginActions = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/v1/user/login`,
+      `https://newsman-server.vercel.app/api/v1/user/login`,
       { email, password },
       config
     );

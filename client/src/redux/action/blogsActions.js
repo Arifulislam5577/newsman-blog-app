@@ -26,10 +26,10 @@ export const fetchBlogs =
     try {
       dispatch({ type: ALL_BLOGS_REQUEST });
 
-      let API = `/api/v1/blog?page=${page}&keyword=${keyword}`;
+      let API = `https://newsman-server.vercel.app/api/v1/blog?page=${page}&keyword=${keyword}`;
 
       if (category) {
-        API = `/api/v1/blog?category=${category}`;
+        API = `https://newsman-server.vercel.app/api/v1/blog?category=${category}`;
       }
 
       const { data } = await axios.get(`${API}`);
@@ -70,7 +70,7 @@ export const createBlog =
       };
 
       await axios.post(
-        `/api/v1/blog`,
+        `https://newsman-server.vercel.app/api/v1/blog`,
         { title, url, description, category },
         config
       );
@@ -95,10 +95,10 @@ export const blogsByCategory = (category) => async (dispatch) => {
   try {
     dispatch({ type: BLOGS_CATEGORY_REQUEST });
 
-    let API = `/api/v1/blog`;
+    let API = `https://newsman-server.vercel.app/api/v1/blog`;
 
     if (category) {
-      API = `/api/v1/blog?category=${category}`;
+      API = `https://newsman-server.vercel.app/api/v1/blog?category=${category}`;
     }
     const { data } = await axios.get(`${API}`);
 
@@ -124,7 +124,7 @@ export const blogById = (id) => async (dispatch) => {
   try {
     dispatch({ type: BLOG_BY_ID_REQUEST });
 
-    let API = `/api/v1/blog`;
+    let API = `https://newsman-server.vercel.app/api/v1/blog`;
 
     const { data } = await axios.get(`${API}/${id}`);
 
@@ -153,7 +153,7 @@ export const deleteBlogPost = (id) => async (dispatch, getState) => {
       Authorization: `Bearer ${userInfo.token}`,
     },
   };
-  let API = `/api/v1/blog`;
+  let API = `https://newsman-server.vercel.app/api/v1/blog`;
 
   const { data } = await axios.delete(`${API}/${id}`, config);
 
@@ -180,7 +180,11 @@ export const createComment =
         },
       };
 
-      await axios.post(`/api/v1/blog/${id}`, { name, comment }, config);
+      await axios.post(
+        `https://newsman-server.vercel.app/api/v1/blog/${id}`,
+        { name, comment },
+        config
+      );
 
       dispatch({
         type: CREATE_COMMENT_SUCCESS,
